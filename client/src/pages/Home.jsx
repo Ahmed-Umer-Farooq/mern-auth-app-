@@ -8,7 +8,7 @@ function Home() {
 
   useEffect(() => {
     getUserData();
-  }, []);
+  }, [getUserData]);
 
   return (
     <div className='relative min-h-screen bg-[url("/bg_img.png")] bg-cover bg-center'>
