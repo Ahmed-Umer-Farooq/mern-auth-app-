@@ -1,13 +1,13 @@
 // client/vite.config.js
 
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'; // You need this for React
-import tailwindcss from '@tailwindcss/vite'; // The new Tailwind plugin
+import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   plugins: [
-    react(),          // Keep the React plugin
-    tailwindcss(),      // Add the Tailwind plugin
+    react(),
+    tailwindcss(),
   ],
   // Keep your server proxy so the frontend can talk to the backend
   server: {
