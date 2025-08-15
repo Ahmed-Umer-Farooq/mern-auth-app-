@@ -6,6 +6,3 @@
 [build.environment]
   NODE_VERSION = "16"
   NPM_FLAGS = "--prefer-offline"
-
-[[plugins]]
-  package = "@netlify/plugin-lighthouse"
