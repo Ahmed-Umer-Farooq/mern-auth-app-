@@ -1,5 +1,5 @@
 // appContext.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppContext } from './appContext.js';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -13,11 +13,25 @@ export const AppContextProvider = ({ children }) => {
   const getUserData = async () => {
     try {
       const { data } = await axios.get(backendUrl + '/api/user/data', { withCredentials: true });
-      data.success ? setUserData(data.userData) : toast.error(data.message);
+      if (data.success) {
+        setUserData(data.userData);
+        setIsLoggedIn(true);
+      } else {
+        setUserData(false);
+        setIsLoggedIn(false);
+        toast.error(data.message);
+      }
     } catch (error) {
+      setUserData(false);
+      setIsLoggedIn(false);
       toast.error(error.message);
     }
   };
+
+  useEffect(() => {
+    getUserData();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <AppContext.Provider value={{ backendUrl, isLoggedIn, setIsLoggedIn, userData, setUserData, getUserData }}>

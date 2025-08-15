@@ -6,6 +6,8 @@ import EmailVerify from './pages/EmailVerify.jsx';
 import ResetPassword from './pages/ResetPassword.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './components/PrivateRoute.jsx';
+import Chat from './pages/Chat.jsx';
 
 const App = () => {
   return (
@@ -16,6 +18,9 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/email-verify" element={<EmailVerify />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/chat" element={<Chat />} />
+        </Route>
       </Routes>
     </div>
   )

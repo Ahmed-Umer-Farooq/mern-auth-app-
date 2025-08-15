@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { assets } from '../assets/assets'
+import { assets } from '../assets/assets';
 import { AppContext } from '../context/appContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const { userData } = useContext(AppContext);
+  const navigate = useNavigate();
 
   return (
     <div className='min-h-screen flex flex-col items-center justify-start pt-32 px-4 text-center text-gray-800'>
@@ -17,11 +19,16 @@ const Header = () => {
       <p className='mb-8 max-w-md mx-auto'>
         This is a simple MERN stack application that demonstrates user authentication and authorization. You can register, login, and reset your password.
       </p>
-      <button className='border border-gray-500 rounded-full px-8 py-2.5 hover:bg-gray-100 transition-all'>
-        Get Started
-      </button>
+      {userData && (
+        <button
+          className='border border-gray-500 rounded-full px-8 py-2.5 hover:bg-gray-100 transition-all'
+          onClick={() => navigate('/chat')}
+        >
+          Get Started
+        </button>
+      )}
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

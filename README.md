@@ -1,193 +1,86 @@
-# MERN Authentication App
+# MERN Authentication App - Optimized for Deployment
 
-A full-stack user authentication application built with the MERN stack (MongoDB, Express.js, React.js, Node.js).
+This is an optimized version of the MERN authentication app with improved package versions and deployment configurations.
 
-## 🚀 Features
+## 🚀 Deployment Optimizations
 
-- User registration and login
-- Email verification with OTP
-- Password reset functionality
-- JWT-based authentication
-- Responsive design
-- Protected routes
+### Netlify Configuration
+- Added `netlify.toml` with optimized build settings
+- Specified Node.js version 16 for better compatibility
+- Added `NPM_FLAGS = "--prefer-offline"` to speed up builds
 
-## 🛠️ Tech Stack
-
-### Frontend
-- React.js
-- Vite
-- Tailwind CSS
-- React Router
-- Axios
-- React Toastify
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT (JSON Web Tokens)
-- Nodemailer
-- bcryptjs
+### Package Updates
+- Downgraded React from v19 to v18 for stability
+- Updated dependencies to more stable versions
+- Moved nodemon to devDependencies in server package.json
 
 ## 📦 Installation
 
-### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB
-- Git
-
-### Clone the repository
-```bash
-git clone <your-repository-url>
-cd mern-auth-app
-```
-
-### Install dependencies
-
-#### Backend
+### Backend (Server)
 ```bash
 cd server
 npm install
 ```
 
-#### Frontend
+### Frontend (Client)
 ```bash
 cd client
 npm install
 ```
 
-## ⚙️ Environment Variables
+## 🚀 Deployment Instructions
 
-### Backend (.env)
-Create a `.env` file in the `server` directory:
+### Deploy Backend to Railway
+1. Connect your GitHub repository to Railway
+2. Set root directory to `server`
+3. Add environment variables:
+   - PORT=5000
+   - NODE_ENV=production
+   - MONGODB_URI=your_mongodb_connection_string
+   - JWT_SECRET=your_secure_jwt_secret
+   - SMTP_HOST=smtp-relay.brevo.com
+   - SMTP_USER=your_brevo_username
+   - SMTP_PASS=your_brevo_smtp_password
+   - SENDER_EMAIL=your_verified_email@brevo.com
 
-```env
+### Deploy Frontend to Netlify
+1. Connect your GitHub repository to Netlify
+2. Build settings are configured in `netlify.toml`:
+   - Base directory: `client/`
+   - Publish directory: `dist/`
+   - Build command: `npm install && npm run build`
+
+## 🛠️ Environment Variables
+
+### Frontend (.env in client directory)
+```
+VITE_BACKEND_URL=https://your-railway-backend-url.railway.app
+```
+
+### Backend (.env in server directory)
+```
 PORT=5000
-NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017
-JWT_SECRET=your_jwt_secret_key_here
+NODE_ENV=production
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secure_jwt_secret
 SMTP_HOST=smtp-relay.brevo.com
-SMTP_USER=your_brevo_smtp_username
+SMTP_USER=your_brevo_username
 SMTP_PASS=your_brevo_smtp_password
-SENDER_EMAIL=your_verified_sender_email@yourdomain.com
+SENDER_EMAIL=your_verified_email@brevo.com
 ```
 
-### Frontend (.env)
-Create a `.env` file in the `client` directory:
+## 🧪 Testing
 
-```env
-VITE_BACKEND_URL=http://localhost:5000
-```
+After deployment:
+1. Visit your Netlify frontend URL
+2. Test user registration and login
+3. Verify email functionality
+4. Test password reset
 
-## 🚀 Running the Application
+## 🆘 Troubleshooting
 
-### Development Mode
-
-#### Start Backend Server
-```bash
-cd server
-npm start
-```
-
-#### Start Frontend Development Server
-```bash
-cd client
-npm run dev
-```
-
-The application will be available at:
-- Frontend: http://localhost:5173
-- Backend: http://localhost:5000
-
-## 📁 Project Structure
-
-```
-mern-auth-app/
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── pages/        # Page components
-│   │   ├── context/      # React context
-│   │   └── assets/       # Static assets
-│   ├── public/
-│   └── package.json
-├── server/                # Node.js backend
-│   ├── config/           # Configuration files
-│   ├── controllers/      # Route controllers
-│   ├── middleware/       # Custom middleware
-│   ├── models/          # Database models
-│   ├── routes/          # API routes
-│   └── package.json
-└── README.md
-```
-
-## 🌐 Deployment
-
-### Frontend Deployment (Netlify)
-
-1. Build the frontend:
-```bash
-cd client
-npm run build
-```
-
-2. Deploy to Netlify:
-   - Connect your GitHub repository to Netlify
-   - Set build command: `cd client && npm install && npm run build`
-   - Set publish directory: `client/dist`
-   - Add environment variable: `VITE_BACKEND_URL=https://your-backend-url.com`
-
-### Backend Deployment (Railway/Render)
-
-1. Deploy to Railway or Render:
-   - Connect your GitHub repository
-   - Set root directory to `server`
-   - Add environment variables
-   - Set build command: `npm install`
-   - Set start command: `npm start`
-
-### Database (MongoDB Atlas)
-
-1. Create a MongoDB Atlas account
-2. Create a new cluster
-3. Get your connection string
-4. Update your backend environment variables
-
-## 🔧 API Endpoints
-
-### Authentication
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
-- `POST /api/auth/logout` - User logout
-- `POST /api/auth/send-verify-otp` - Send email verification OTP
-- `POST /api/auth/verify-account` - Verify email with OTP
-- `POST /api/auth/send-password-reset-otp` - Send password reset OTP
-- `POST /api/auth/verify-password-reset-otp` - Verify password reset OTP
-- `POST /api/auth/reset-password` - Reset password
-
-### User
-- `GET /api/user/data` - Get user data
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 👨‍💻 Author
-
-Your Name - [Your GitHub](https://github.com/yourusername)
-
-## 🙏 Acknowledgments
-
-- React.js team
-- Node.js community
-- MongoDB team
-- All contributors and supporters 
+If you encounter deployment issues:
+1. Check build logs in Netlify and Railway dashboards
+2. Ensure all environment variables are set correctly
+3. Verify MongoDB connection string and credentials
+4. Check that Brevo SMTP settings are correct
