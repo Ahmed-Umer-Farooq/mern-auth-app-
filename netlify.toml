@@ -1,8 +1,3 @@
 [build]
-  base = "client/"
-  publish = "dist/"
-  command = "npm install && npm run build"
-
-[build.environment]
-  NODE_VERSION = "16"
-  NPM_FLAGS = "--prefer-offline"
+  command = "cd client && npm install && npm run build"
+  publish = "client/dist"
