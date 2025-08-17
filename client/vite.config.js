@@ -18,7 +18,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ['socket.io-client']
+      external: ['socket.io-client', 'react-icons/fi']
     }
   }
 });
