@@ -32,23 +32,12 @@ const Login = () => {
           backendUrl + '/api/auth/register',
           { name, email, password }
         );
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify({
-            id: data._id,
-            name: data.name,
-            email: data.email,
-            avatar: data.avatar
-          }));
-          axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-        }
         if (data.success) {
           toast.success('Registration successful! Please log in.');
           setState('Login'); // Switch to login form
           setName('');
           setEmail('');
           setPassword('');
-          getUserData();
         } else {
           toast.error(data.message);
         }
@@ -59,17 +48,7 @@ const Login = () => {
           password,
         });
         const { data } = res;
-        if (data.token) {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify({
-            id: data._id,
-            name: data.name,
-            email: data.email,
-            avatar: data.avatar
-          }));
-          axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-        }
-        if (data.success || data.token) {
+        if (data.success) {
           toast.success('Successfully logged in!');
           setIsLoggedIn(true);
           getUserData();

@@ -88,6 +88,18 @@ SMTP_PASS=your_brevo_smtp_password
 SENDER_EMAIL=your_verified_email@domain.com
 ```
 
+For local development, create a `.env` file in the `server` directory with:
+```
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017
+JWT_SECRET=your_secure_jwt_secret_here
+SMTP_HOST=smtp-relay.brevo.com
+SMTP_USER=your_brevo_username
+SMTP_PASS=your_brevo_smtp_password
+SENDER_EMAIL=your_verified_email@domain.com
+```
+
 ### 3.4 Get Backend URL
 1. After deployment, Railway will provide a URL
 2. Copy this URL (e.g., `https://your-app.railway.app`)
@@ -110,6 +122,11 @@ SENDER_EMAIL=your_verified_email@domain.com
 In Netlify dashboard:
 1. Go to "Site settings" → "Environment variables"
 2. Add: `VITE_BACKEND_URL=https://your-backend-url.railway.app`
+
+For local development, create a `.env` file in the `client` directory with:
+```
+VITE_BACKEND_URL=http://localhost:5000
+```
 
 ### 4.4 Update CORS Settings
 In your backend `server.js`, update the allowed origins:
