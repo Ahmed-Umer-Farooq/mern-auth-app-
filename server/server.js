@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 // Allowed origins for CORS
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-netlify-app.netlify.app" // Update this with your actual Netlify frontend URL
+  process.env.FRONTEND_URL || "https://your-netlify-app.netlify.app" // Update this with your actual Netlify frontend URL
 ];
 
 // Connect to MongoDB database
