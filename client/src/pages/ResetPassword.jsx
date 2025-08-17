@@ -9,6 +9,7 @@ axios.defaults.withCredentials = true;
 
 const ResetPassword = () => {
   const navigate = useNavigate();
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [isEmailSent, setIsEmailSent] = useState(false);
@@ -50,7 +51,7 @@ const ResetPassword = () => {
     }
     
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/send-password-reset-otp', {
+      const response = await axios.post(`${backendUrl}/api/auth/send-password-reset-otp`, {
         email: email
       });
       
@@ -73,7 +74,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/verify-password-reset-otp', {
+      const response = await axios.post(`${backendUrl}/api/auth/verify-password-reset-otp`, {
         email: email,
         otp: otpString
       });
@@ -96,7 +97,7 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/reset-password', {
+      const response = await axios.post(`${backendUrl}/api/auth/reset-password`, {
         email: email,
         otp: otp.join(''),
         newPassword: newPassword

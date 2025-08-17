@@ -10,11 +10,12 @@ import userrouter from './routes/userroutes.js';
 
 // Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 // Allowed origins for CORS
 const allowedOrigins = [
   "http://localhost:5173",
+  "http://localhost:5174",
   process.env.FRONTEND_URL || "https://your-netlify-app.netlify.app" // Update this with your actual Netlify frontend URL
 ];
 

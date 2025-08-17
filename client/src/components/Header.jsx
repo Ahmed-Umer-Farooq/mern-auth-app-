@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { assets } from '../assets/assets';
-import { AppContext } from '../context/appContext';
+import { AppContext } from '../context/simpleAppContext';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {

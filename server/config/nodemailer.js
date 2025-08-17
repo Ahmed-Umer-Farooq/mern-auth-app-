@@ -13,10 +13,11 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Verify transporter configuration
+// Verify transporter configuration (non-blocking)
 transporter.verify(function(error, success) {
   if (error) {
-    console.error('SMTP Configuration Error:', error);
+    console.warn('SMTP Configuration Warning: Email functionality may not work properly. Error:', error.message);
+    console.warn('This is not critical for basic app functionality. Please check your SMTP credentials in .env file.');
   } else {
     console.log('SMTP Server is ready to send emails');
   }

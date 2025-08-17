@@ -1,4 +1,3 @@
-// appContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -6,26 +5,24 @@ import axios from 'axios';
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  console.log('Enhanced AppContextProvider is rendering...');
+  
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  console.log('AppContextProvider rendering, backendUrl:', backendUrl);
+  const [loading, setLoading] = useState(false);
 
   // Function to get user data from backend
   const getUserData = async () => {
+    if (loading) return; // Prevent multiple simultaneous calls
+    
     try {
-      if (!backendUrl) {
-        console.log('Backend URL is not defined - skipping user data fetch');
-        setLoading(false);
-        return;
-      }
-
+      setLoading(true);
       console.log('Fetching user data from:', backendUrl + '/api/user/data');
+      
       const { data } = await axios.get(backendUrl + '/api/user/data', { 
         withCredentials: true,
-        timeout: 5000 // 5 second timeout
+        timeout: 8000 // 8 second timeout
       });
       
       if (data && data.success) {
@@ -42,7 +39,7 @@ export const AppContextProvider = ({ children }) => {
       setUserData(null);
       setIsLoggedIn(false);
       
-      // Only log errors that aren't just "user not logged in"
+      // Only log actual errors, not just "user not logged in"
       if (error.response?.status !== 401 && error.code !== 'ECONNREFUSED') {
         console.error('API Error:', error.response?.data?.message || error.message);
       }
@@ -51,15 +48,20 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
-  // Don't call getUserData on mount - let components call it when needed
-  // This prevents the context from breaking if the API is down
+  // Check for existing session on app load
   useEffect(() => {
-    setLoading(false); // Set loading to false immediately
-    // getUserData(); // Comment this out for now
-  }, []);
+    const checkSession = async () => {
+      // Only check if we don't already have user data
+      if (!userData && !isLoggedIn) {
+        await getUserData();
+      }
+    };
+    
+    checkSession();
+  }, []); // Run once on mount
 
   const contextValue = {
-    backendUrl: backendUrl || 'http://localhost:5000',
+    backendUrl,
     isLoggedIn,
     setIsLoggedIn,
     userData,
@@ -68,7 +70,7 @@ export const AppContextProvider = ({ children }) => {
     loading
   };
 
-  console.log('AppContext value:', contextValue);
+  console.log('Enhanced AppContext value:', contextValue);
 
   return (
     <AppContext.Provider value={contextValue}>

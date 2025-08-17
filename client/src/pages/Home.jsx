@@ -1,25 +1,27 @@
 import React, { useContext, useEffect } from 'react';
 import NavBar from '../components/NavBar';
 import Header from '../components/Header';
-import { AppContext } from '../context/appContext';
+import { AppContext } from '../context/simpleAppContext';
 
 function Home() {
-  const { userData, getUserData } = useContext(AppContext);
+  const { userData, getUserData, isLoggedIn } = useContext(AppContext);
 
   useEffect(() => {
-    getUserData();
-  }, [getUserData]);
+    // Only call getUserData if we might be logged in
+    if (!userData && !isLoggedIn) {
+      getUserData();
+    }
+  }, [getUserData, userData, isLoggedIn]);
 
   return (
-    <div className='relative min-h-screen bg-[url("/bg_img.png")] bg-cover bg-center'>
+    <div className='relative min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100'>
       <NavBar />
       <Header />
       {userData && (
-        <h2 className="text-center text-2xl font-bold mt-4">
+        <h2 className="text-center text-2xl font-bold mt-4 text-gray-800">
           Hi {userData.name} 👋
         </h2>
       )}
-      <h1>Hey {userData ? userData.name : "developer"}</h1>
     </div>
   );
 }

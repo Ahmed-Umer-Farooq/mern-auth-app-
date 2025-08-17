@@ -16,9 +16,6 @@ export default defineConfig({
       },
     }
   },
-  build: {
-    rollupOptions: {
-      external: ['socket.io-client', 'react-icons/fi']
-    }
-  }
+  // Removed external dependencies from build config
+  // socket.io-client and react-icons should be bundled, not external
 });
