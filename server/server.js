@@ -10,7 +10,7 @@ import userrouter from './routes/userroutes.js';
 
 // Initialize Express app
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Allowed origins for CORS
 const allowedOrigins = [

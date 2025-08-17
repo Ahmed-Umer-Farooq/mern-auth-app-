@@ -19,14 +19,6 @@ const Header = () => {
       <p className='mb-8 max-w-md mx-auto'>
         This is a simple MERN stack application that demonstrates user authentication and authorization. You can register, login, and reset your password.
       </p>
-      {userData && (
-        <button
-          className='border border-gray-500 rounded-full px-8 py-2.5 hover:bg-gray-100 transition-all'
-          onClick={() => navigate('/chat')}
-        >
-          Get Started
-        </button>
-      )}
     </div>
   );
 }
