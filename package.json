@@ -1,6 +1,14 @@
 {
-  "dependencies": {
-    "react-icons": "^5.5.0",
-    "socket.io-client": "^4.8.1"
+  "name": "mern-auth-app",
+  "version": "1.0.0",
+  "description": "MERN Authentication App",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run server",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
