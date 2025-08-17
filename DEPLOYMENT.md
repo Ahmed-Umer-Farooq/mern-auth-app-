@@ -1,5 +1,69 @@
 # Deployment Guide
 
+## Local Development Setup
+
+### Prerequisites
+1. Node.js (version 14 or higher)
+2. MongoDB Atlas account (for database) or local MongoDB installation
+
+### Setting up MongoDB Atlas (Recommended for Development)
+
+1. **Create MongoDB Atlas Account:**
+   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+   - Sign up for a free account
+   - Create a new cluster (M0 free tier is sufficient for development)
+
+2. **Configure Database Access:**
+   - In the Atlas dashboard, go to "Database Access" in the left sidebar
+   - Click "Add New Database User"
+   - Choose "Password" as the authentication method
+   - Enter a username and password (remember these)
+   - Set user privileges to "Read and write to any database"
+   - Click "Add User"
+
+3. **Configure Network Access:**
+   - In the Atlas dashboard, go to "Network Access" in the left sidebar
+   - Click "Add IP Address"
+   - For development, you can add "0.0.0.0/0" to allow access from any IP
+   - Click "Confirm"
+
+4. **Get Connection String:**
+   - In the Atlas dashboard, go to "Clusters" and click "Connect" on your cluster
+   - Choose "Connect your application"
+   - Copy the connection string
+   - Replace `<password>` with your actual database user password
+   - Add your database name at the end: `?retryWrites=true&w=majority&appName=your-app-name/mern-auth`
+
+5. **Update server/.env:**
+   - Replace the `MONGODB_URI` value with your Atlas connection string
+
+### Running the App Locally
+
+1. **Install Dependencies:**
+   ```bash
+   # Install root dependencies
+   npm install
+   
+   # Install server dependencies
+   cd server
+   npm install
+   
+   # Install client dependencies
+   cd ../client
+   npm install
+   cd ..
+   ```
+
+2. **Start the App:**
+   ```bash
+   # Run both frontend and backend together
+   npm run dev
+   ```
+
+3. **Access the App:**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:5000
+
 ## Backend Deployment to Render
 
 ### Prerequisites
