@@ -2,6 +2,10 @@
 
 A full-stack authentication application built with the MERN stack (MongoDB, Express, React, Node.js) featuring user registration, login, email verification, and password reset functionality.
 
+## Live Demo
+
+[https://mern-auth-app-2002.netlify.app/](https://mern-auth-app-2002.netlify.app/)
+
 ## Features
 
 - User Registration and Login
@@ -85,6 +89,8 @@ cd mern-auth-app
 ## Deployment
 
 For deployment instructions, please refer to [DEPLOYMENT.md](DEPLOYMENT.md).
+
+**Note: All backend services are paid and require proper configuration for production use.**
 
 ## Project Structure
 
